@@ -1,40 +1,17 @@
-package pages;
+package pages.loginPage;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
-public class LoginPage extends BasePage {
-
-    @FindBy(xpath = "//button[@class='uk-button']")
-    private WebElement activeLanguage;
-    @FindBy(xpath = "//button[text()='ENG']")
-    private WebElement changeToEng;
-    @FindBy(xpath = "//button[text()='RUS']")
-    private WebElement changeToRUS;
-    @FindBy(xpath = "//input[@formcontrolname ='username']")
-    private WebElement userName;
-    @FindBy(xpath = "//input[@formcontrolname ='password']")
-    private WebElement password;
-    @FindBy(xpath = "//button[@class = 'uk-button uk-button-primary']")
-    private WebElement buttonLogIn;
-    @FindBy(xpath = "//div[@class = 'userlog']")
-    private WebElement checkGeneralPageAndOpenSystemMenu;
-    @FindBy(xpath = "//div[@class = 'user-menu']/div/a")
-    private WebElement linkExit;
-    @FindBy(xpath = "//div[@class = 'login-form-header']")
-    private WebElement checkLogInPage;
-
-    @FindBy(css = "input[formcontrolname='username'] + i")
-    private WebElement userNameAlert;
-
-    public LoginPage() {
+public class LoginPageAction extends LoginPage{
+    LoginPage loginPage = new LoginPage();
+    public LoginPageAction() {
         super();
     }
+
     public void changeLanguage() {
         activeLanguage.click();
     }
@@ -42,7 +19,6 @@ public class LoginPage extends BasePage {
     public void changeLanguageToRus() {
         changeToRUS.click();
     }
-
     public void changeLanguageToEng() {
         changeToEng.click();
     }

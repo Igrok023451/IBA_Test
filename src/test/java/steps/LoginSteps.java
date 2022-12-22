@@ -1,14 +1,12 @@
 package steps;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pages.LoginPage;
+import pages.loginPage.LoginPageAction;
 import util.property.ActionsKeyboardMouse;
 
 public class LoginSteps {
 
     private ActionsKeyboardMouse action = new ActionsKeyboardMouse();
-    private LoginPage loginPage = new LoginPage();
+    private LoginPageAction loginPage = new LoginPageAction();
     public SearchResulLoginSteps changeLang() {
         loginPage.changeLanguage();
         return new SearchResulLoginSteps();

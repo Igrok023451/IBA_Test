@@ -1,7 +1,8 @@
-package pages;
+package pages.securityPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 public class SecurityCertificatePage extends BasePage {
     @FindBy(xpath = "//button[@aria-expanded = 'false']")

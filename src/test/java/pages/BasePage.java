@@ -8,7 +8,7 @@ import static util.driver.Driver.getDriver;
 
 public abstract class BasePage {
 
-    ActionsKeyboardMouse actionsKeyboardMouse;
+    protected ActionsKeyboardMouse actionsKeyboardMouse;
 
     WebDriver driver;
 
