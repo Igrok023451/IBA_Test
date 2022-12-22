@@ -4,25 +4,136 @@ import org.testng.annotations.Test;
 import pages.AccordionPage;
 import pages.CreatePersonPage;
 
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+
 public class LoginTest extends BaseTest {
     public LoginTest() {
         super();
     }
 
+    ////Позитиные тест кейсы
     @Test(priority = 1, description = "Change Language")
-    public void changeLanguageToEng()  throws InterruptedException {
-    steps.changeLang().verifyThatLanguageChangeToEng(true);
-    Thread.sleep(300);
-    steps.changeLang().verifyThatLanguageChangeToRus(true);
+    public void changeLanguageToEng() throws InterruptedException {
+        steps.changeLang().verifyThatLanguageChangeToEng(true);
+        Thread.sleep(300);
+        steps.changeLang().verifyThatLanguageChangeToRus(true);
     }
-    @Test(dataProvider = "LogIn", priority = 2, description = "")
-    public void enterInBilling(String user, String psw, String exp){
-     //   steps.setUserAndPasswordValue(user, psw);
+
+    @Test(dataProvider = "LogIn", priority = 2,
+            description = "Log in and Log out")
+    public void enterInBillingAndExitRus(String user, String psw, String exp) {
+        steps.setUserAndPasswordValue(user, psw);
+        steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
+        steps.clickLogOut().verifyThatIsLogInPage("login-form-header");
+    }
+
+    @Test(dataProvider = "LogIn", priority = 3,
+            description = "Log in and Log out")
+    public void enterInBillingAndExitEng(String user, String psw, String exp) {
+        steps.changeLangToEng();
+        steps.setUserAndPasswordValue(user, psw);
+        steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
+        steps.clickLogOut().verifyThatIsLogInPage("login-form-header");
+    }
+
+    @Test(dataProvider = "LogIn", priority = 4,
+            description = "Type text by keyboard and Log in by click to button 'Log in'. RUS")
+    public void enterInBillingBySetTextAndClickButtonRUS(String user, String psw, String exp) {
+        steps.changeLangToRus();
+        steps.setUserAndPasswordValue(user, psw);
+        steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 5,
+            description = "Past text by keyboard and Log in by click to button 'Log in'. RUS")
+    public void enterInBillingByPastTextAndClickButtonRUS(String user, String psw, String exp) {
         steps.pastUserAndPasswordValue(user, psw);
         steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
     }
 
-    @Test(priority = 3)
+    @Test(dataProvider = "LogIn", priority = 6,
+            description = "Type text by keyboard and Log in by push Enter 'Log in'. RUS")
+    public void enterInBillingBySetTextAndPushButtonRUS(String user, String psw, String exp) {
+        steps.setUserAndPasswordValue(user, psw);
+        steps.pushButtonSignInEnter().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 7,
+            description = "Past text by keyboard and Log in by push Enter 'Log in'. RUS")
+    public void enterInBillingByPastTextAndPushButtonRUS(String user, String psw, String exp) {
+        steps.pastUserAndPasswordValue(user, psw);
+        steps.pushButtonSignInEnter().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 8,
+            description = "Type text by keyboard and Log in by click to button 'Log in'. ENG")
+    public void enterInBillingBySetTextAndClickButtonENG(String user, String psw, String exp) {
+        steps.changeLangToEng();
+        steps.setUserAndPasswordValue(user, psw);
+        steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 9,
+            description = "Past text by keyboard and Log in by click to button 'Log in'. ENG")
+    public void enterInBillingByPastTextAndClickButtonENG(String user, String psw, String exp) {
+        steps.pastUserAndPasswordValue(user, psw);
+        steps.clickButtonSignIn().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 10,
+            description = "Type text by keyboard and Log in by push Enter 'Log in'. ENG")
+    public void enterInBillingBySetTextAndPushButtonENG(String user, String psw, String exp) {
+        steps.setUserAndPasswordValue(user, psw);
+        steps.pushButtonSignInEnter().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 11,
+            description = "Past text by keyboard and Log in by push Enter 'Log in'. ENG")
+    public void enterInBillingByPastTextAndPushButtonENG(String user, String psw, String exp) {
+        steps.pastUserAndPasswordValue(user, psw);
+        steps.pushButtonSignInEnter().verifyThatIsGeneralPage(exp);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 12,
+            description = "Check that into field can select all text and copy it")
+    public void checkThatIntoFieldCanCopy(String user, String psw, String exp) throws IOException, UnsupportedFlavorException {
+        steps.setUserValue(user).verifyThatClipboardHasData(user);
+    }
+    @Test(dataProvider = "LogIn", priority = 13,
+            description = "Check that into field can select all text and copy it")
+    public void checkThatIntoTheFieldCanCut(String user, String psw, String exp) throws IOException, UnsupportedFlavorException {
+        steps.setUserValue(user).verifyThatCanCutIntoField(user);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 14,
+            description = "Check that keyboard Delete work")
+    public void checkThatDeleteWork(String user, String psw, String exp) throws IOException, UnsupportedFlavorException {
+        String expected = "Заполните обязательные поля";
+        steps.setUserValue(user).verifyThatDeleteWork(expected);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 15,
+            description = "Check that into field can select all text and copy it")
+    public void checkThatFieldHaveToFill(String user, String psw, String exp) throws IOException, UnsupportedFlavorException {
+        String expected = "Заполните обязательные поля";
+        steps.setUserValue(user).verifyThatFieldHaveToFill(expected);
+    }
+
+    @Test(dataProvider = "LogIn", priority = 16,
+            description = "Check that keyboard Delete work")
+    public void checkThatBackspaceWork(String user, String psw, String exp) throws IOException, UnsupportedFlavorException {
+        String expected = "Заполните обязательные поля";
+        steps.setUserValue(user).verifyThatBackspaceWork(expected);
+    }
+
+
+
+
+
+
+
+    @Test(priority = 30)
     public void two() {
 
         AccordionPage accordionPage = new AccordionPage();

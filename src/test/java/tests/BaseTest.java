@@ -3,9 +3,7 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.SecurityCertificatePage;
 import steps.LoginSteps;
@@ -13,7 +11,6 @@ import util.driver.Driver;
 import util.property.XLUtility;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static util.property.PropertyReader.getInstance;
 
@@ -39,15 +36,16 @@ public class BaseTest {
         loginPage = new LoginPage();
         excelData = excel.getSubscriberText(numberSheet, numberRow, numberCell);
     }
+
     @AfterMethod
     public void exit() {
-       /// driver.navigate().back();
+       driver.navigate().back();
     }
     @DataProvider(name = "LogIn")
     public Object[][] getData() {
         return new String[][]{
-                {"admin", "admin", "Время на сервере:"},
-               /// {"admin", "ad", "Invalid"}
+                {"admin", "admin", "userlog"},
+                /// {"admin", "ad", "Invalid"}
         };
     }
 

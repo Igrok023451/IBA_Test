@@ -38,4 +38,7 @@ public class Driver {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
     }
+    public static void exitDriver() {
+        driver.quit();
+    }
 }
