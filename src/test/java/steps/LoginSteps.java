@@ -1,5 +1,6 @@
 package steps;
 
+import pages.generalPage.GeneralPageAction;
 import pages.loginPage.LoginPageAction;
 import util.property.ActionsKeyboardMouse;
 
@@ -7,10 +8,7 @@ public class LoginSteps {
 
     private ActionsKeyboardMouse action = new ActionsKeyboardMouse();
     private LoginPageAction loginPage = new LoginPageAction();
-    public SearchResulLoginSteps changeLang() {
-        loginPage.changeLanguage();
-        return new SearchResulLoginSteps();
-    }
+    private GeneralPageAction generalPageAction = new GeneralPageAction();
     public SearchResulLoginSteps changeLangToRus() {
         loginPage.changeLanguageToRus();
         return new SearchResulLoginSteps();
@@ -24,9 +22,17 @@ public class LoginSteps {
         loginPage.sendTextToUserField(user);
         return new SearchResulLoginSteps();
     }
+    public SearchResulLoginSteps cleanUserValue() {
+        loginPage.cleanFieldUsername();
+        return new SearchResulLoginSteps();
+    }
 
     public SearchResulLoginSteps setPasswordValue(String psw) {
         loginPage.sendTextToPasswordField(psw);
+        return new SearchResulLoginSteps();
+    }
+    public SearchResulLoginSteps cleanPasswordValue() {
+        loginPage.cleanFieldPassword();
         return new SearchResulLoginSteps();
     }
 
@@ -51,8 +57,8 @@ public class LoginSteps {
         return new SearchResulLoginSteps();
     }
     public SearchResulLoginSteps clickLogOut(){
-        loginPage.openPersonalMenu();
-        loginPage.clickLinkLogOut();
+        generalPageAction.openPersonalMenu();
+        generalPageAction.clickLinkLogOut();
         return new SearchResulLoginSteps();
     }
 

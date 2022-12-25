@@ -18,14 +18,14 @@ public class LogInTest extends BasePage_ {
     public void enterInBilling(String user, String psw, String exp) {
         driver.get("https://test-billing.mtis.by/mtis-web-billing/#/");
         ///check security
-        driver.findElement(By.xpath("//button[@aria-expanded = 'false']")).click();
-        driver.findElement(By.xpath("//p[@id='final-paragraph']/a")).click();
-        ///enter in system
-        driver.findElement(By.xpath("//input[@formcontrolname ='username']")).sendKeys(user);
-        driver.findElement(By.xpath("//input[@formcontrolname ='password']")).sendKeys(psw);
-        driver.findElement(By.xpath("//button[@class = 'uk-button uk-button-primary']")).click();
-        ///Check website
-        String actual = driver.findElement(By.xpath("//span[text() = 'Время на сервере:']")).getText();
-        Assert.assertEquals(exp, actual, "You can't enter in the web site");
+//        driver.findElement(By.xpath("//button[@aria-expanded = 'false']")).click();
+//        driver.findElement(By.xpath("//p[@id='final-paragraph']/a")).click();
+//        ///enter in system
+//        driver.findElement(By.xpath("//input[@formcontrolname ='username']")).sendKeys(user);
+//        driver.findElement(By.xpath("//input[@formcontrolname ='password']")).sendKeys(psw);
+//        driver.findElement(By.xpath("//button[@class = 'uk-button uk-button-primary']")).click();
+//        ///Check website
+//        String actual = driver.findElement(By.xpath("//span[text() = 'Время на сервере:']")).getText();
+//        Assert.assertEquals(exp, actual, "You can't enter in the web site");
     }
 }

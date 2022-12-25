@@ -1,7 +1,8 @@
-package pages;
+package pages.newPersonPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 public class CreatePersonPage extends BasePage {
     @FindBy(xpath = "//textarea[@formcontrolname='lastName']")

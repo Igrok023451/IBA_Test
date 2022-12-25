@@ -1,0 +1,13 @@
+<suite name="Suite1" verbose="1" >
+    <test name="CheckLogInPage" >
+        <classes>
+            <class name="tests.PassSiteCertificate"/>
+            <class name="tests.LoginTest"/>
+        </classes>
+        <groups>
+            <run>
+                <include name="checkingTests"/>
+            </run>
+        </groups>
+    </test>
+</suite>

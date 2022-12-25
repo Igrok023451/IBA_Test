@@ -1,9 +1,10 @@
-package pages;
+package pages.generalPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
-public class AccordionPage extends BasePage{
+public class AccordionPage extends BasePage {
     public AccordionPage() {
         super();
     }

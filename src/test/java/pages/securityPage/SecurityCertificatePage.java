@@ -9,6 +9,8 @@ public class SecurityCertificatePage extends BasePage {
     private WebElement securityDopolnitelno;
     @FindBy(xpath = "//p[@id='final-paragraph']/a")
     private WebElement securityNext;
+    @FindBy(xpath = "//div[@id = 'main-message']")
+    private WebElement isSecurityPage;
 
     public SecurityCertificatePage() {
         super();
@@ -17,5 +19,8 @@ public class SecurityCertificatePage extends BasePage {
     public void clickSecurityPage() {
         securityDopolnitelno.click();
         securityNext.click();
+    }
+    public void assertThatIsSecurityPage() {
+        isSecurityPage.isDisplayed();
     }
 }
