@@ -5,6 +5,7 @@ import org.testng.annotations.*;
 import pages.loginPage.LoginPage;
 import pages.securityPage.SecurityCertificatePage;
 import steps.LoginSteps;
+import steps.passSecuritySystem.SearchSecuritySystemStep;
 import steps.passSecuritySystem.SecuritySystemSteps;
 import util.driver.Driver;
 import util.property.XLUtility;
@@ -25,6 +26,9 @@ public class BaseTest {
     LoginPage loginPage;
     SecuritySystemSteps systemSteps;
 
+    SearchSecuritySystemStep searchSecuritySystemStep = new SearchSecuritySystemStep();
+
+
     @BeforeTest(groups = "checkingTests")
     public void start() throws IOException {
         driver = Driver.getDriver();
@@ -34,11 +38,13 @@ public class BaseTest {
         steps = new LoginSteps();
         loginPage = new LoginPage();
         excelData = excel.getSubscriberText(numberSheet, numberRow, numberCell);
+        searchSecuritySystemStep.verifyThatPageOpen();
+        systemSteps.passTheSecuritySystem().verifyThatTheSystemHasPassed();
     }
 
 //    @AfterMethod
 //    public void exit() {
-//       driver.navigate().back();
+//       driver.close();
 //    }
     @DataProvider(name = "LogIn")
     protected Object[][] getData() {

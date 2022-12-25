@@ -161,7 +161,7 @@ public class LoginTest extends BaseTest {
         steps.setPasswordValue(psw).verifyThatBackspaceWorkPassword(expected);
         steps.changeLangToRus();
     }
-    @Test(dataProvider = "UserIncorrect", priority = 20,
+    @Test(dataProvider = "UserIncorrect", priority = 20, groups = "checkingTests",
     description = "Check help alert in Password field after type Username and click try log in")
     public void checkThatTypeUsernameCanNotLogIn(String user, String psw, String exp) throws InterruptedException {
         driver.navigate().refresh();
@@ -173,7 +173,7 @@ public class LoginTest extends BaseTest {
         driver.navigate().refresh();
         steps.setPasswordValue(psw).verifyThatUsernameAlertWork(exp);
     }
-    @Test(dataProvider = "UserIncorrect", priority = 21, groups = "checkingTests",
+    @Test(dataProvider = "UserIncorrect", priority = 21,
             description = "Check system Error : E00004 type wrong Username")
     public void checkErrorAfterWrongUsername(String user, String psw, String exp) throws InterruptedException {
         driver.navigate().refresh();
